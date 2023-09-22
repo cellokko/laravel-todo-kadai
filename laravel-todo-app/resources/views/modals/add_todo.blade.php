@@ -10,7 +10,10 @@
             <form action="{{ route('goals.todos.store', $goal)}}" method="post">
                 @csrf
                 <div class="modal-body">
+                    <h3 class="modal-content" id="addTodoModalLabel{{ $goal->id }}">ToDo</h3>
                     <input type="text" class="form-control" name="content">
+                    <h3>詳細</h3>
+                    <input type="text" class="form-control" name="description">
                     <div class="d-flex flex-wrap">
                         {{-- 登録されているタグを配列で繰り返し取り出し、タグの数だけチェックボックスを表示。
                         チェックボックスは複数選択可。name属性でidを配列にするとvalueの値を複数渡すことができるため、

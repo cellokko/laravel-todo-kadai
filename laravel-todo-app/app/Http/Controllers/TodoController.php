@@ -27,7 +27,10 @@ class TodoController extends Controller
         $todo->user_id = Auth::id();
         $todo->goal_id = $goal->id;
         $todo->done = false;
+        $todo->description = $request->input('description');
+
         $todo->save();
+
 
         // チェックされたタグidを配列で取得し、sync()メソッドで中間テーブルに保存する
         $todo->tags()->sync($request->input('tag_ids'));
@@ -39,7 +42,7 @@ class TodoController extends Controller
      * 更新機能（updateアクション）
      * １:ドロップダウンの編集リンクをクリックし、既存のTodoを更新する（contentカラムの値の更新）
      * ２:ドロップダインの「完了」「未完了」をクリックして切り替える（doneカラムの値の更新）
-     * 
+     * description=詳細　ToDoの内容詳細をメモする機能の追加
      */
     public function update(Request $request, Goal $goal, Todo $todo) {
         $request->validate([
@@ -50,6 +53,7 @@ class TodoController extends Controller
         $todo->user_id = Auth::id();
         $todo->goal_id = $goal->id;
         $todo->done = $request->boolean('done', $todo->done);
+        $todo->description = $request->input('description');
         $todo->save();
 
         //通常の編集のとき（＝完了と未完了の切り替えでないとき）にのみタグを変更（更新）する

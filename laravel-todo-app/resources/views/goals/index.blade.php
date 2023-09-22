@@ -107,8 +107,12 @@
                                                 <div class="dropdown-divider"></div>
                                                 <li><a href="#" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deleteTodoModal{{ $todo->id }}">削除</a></li>
                                             </ul>
-                                        </div>
                                     </div>
+                                    {{-- 詳細の表示 --}}
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="card-title ms-1 mb-0">{{ $todo->description }}</h5>
+                                    </div>
+                                </div>                               
                                     {{-- 各todoを作成した日時を表示 --}}
                                     <h6 class="card-subtitle ms-1 mb-1 text-muted">{{ $todo->created_at }}</h6>
                                     {{-- 日時の下でそのToDoに紐づいているタグを取得し、idの昇順で並べ替えてタグ名を表示する。id順にすることで他のToDoのタグも同じように並んできれいになる --}}
