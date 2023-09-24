@@ -12,9 +12,9 @@
                 @csrf
                 @method('patch')
                 <div class="modal-body">
-                    <h3>ToDo</h3>
+                    <p><h6>ToDo</h6></p>
                     <input type="text" class="form-control" name="content" value="{{ $todo->content }}">
-                    <h3>詳細</h3>
+                    <p><h6>詳細</h6></p>
                     <input type="text" class="form-control" name="description" value="{{ $todo->description }}">
                     <div class="d-flex flex-wrap">
                         {{-- 登録されているタグを繰り返し取得する --}}
