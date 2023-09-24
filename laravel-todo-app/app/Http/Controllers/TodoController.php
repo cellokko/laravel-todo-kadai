@@ -41,15 +41,15 @@ class TodoController extends Controller
      * 更新機能（updateアクション）
      * １:ドロップダウンの編集リンクをクリックし、既存のTodoを更新する（contentカラムの値の更新）
      * ２:ドロップダインの「完了」「未完了」をクリックして切り替える（doneカラムの値の更新）
-     * description=詳細　ToDoの内容詳細をメモする機能の追加
-     */
+     * input()は第2引数を渡すことで、第1引数に指定したフォームの値が存在しない場合の初期値にすることができる（詳細フォームの入力値の更新がなければ、todoテーブルのdescriptionカラムの値になるつまり、元々の入力内容が残る）：53行目
+    */
     public function update(Request $request, Goal $goal, Todo $todo) {
         $request->validate([
             'content' => 'required',
         ]);
 
         $todo->content = $request->input('content');
-        $todo->description = $request->input('description'); //詳細フォームの追加
+        $todo->description = $request->input('description', $todo->description); //詳細フォームの取得
         $todo->user_id = Auth::id();
         $todo->goal_id = $goal->id;
         $todo->done = $request->boolean('done', $todo->done);
